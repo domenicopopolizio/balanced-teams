@@ -1,0 +1,153 @@
+ :root {
+     
+    --mdc-theme-primary: #4caf50;
+    --mdc-theme-secondary: #fbc02d;
+    --mdc-theme-on-primary: #000000;
+    --mdc-theme-on-secondary: #000000; 
+  }
+html, body {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+  .mdc-floating-label--float-above {
+    color: var(--mdc-theme-primary) !important;
+}
+
+
+#name {
+  max-width: 260px;
+  width: 51vw;
+}
+#age {
+  max-width: 130px;
+  width: 26vw;
+}
+
+#newplayer {
+  max-width: 400px;
+  width: 80vw;
+  margin: auto;
+  margin-top: 40px;
+  text-align: center;
+  border-radius:5px;
+  padding: 15px;
+  padding-bottom: 30px;
+}
+
+
+#players {
+  display: inline-block;
+  
+  width: 80%;
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  margin-left: calc( ( 100% -  ( 80% + 30px ) ) / 2 );
+  max-height: 40vh;
+  overflow: auto;
+  margin-bottom:  50px;
+  padding-bottom: 50px;
+}
+#players:empty {
+  display: none;
+}
+
+.player {
+  width: 40%;
+  display: inline-block;
+  margin-left: calc( ( 100% -  ( 40% + 30px ) * 2 ) / 3 );
+  height: auto;
+  padding: 15px;
+  padding-bottom: 0px;
+  margin-top:  30px;
+  position: relative;
+  
+}
+
+@media (min-width: 1469px) { /* so that .player width is less than 500px*/
+  .player {
+    width: 500px;
+    margin-left: calc( (100% - ( 500px + 30px ) * 2) / 3);
+  }
+}
+
+@media (max-width: 900px ) { 
+  .player {
+    width: 80%;
+    margin-left:  calc( ( 100% -  ( 80% + 30px ) ) / 2 );
+    
+  }
+
+} 
+.clear-user-icon {
+  color: #9a0007;
+  position: absolute;
+  top: calc( 50% - 12px - 7.5px - 12px);
+  right: calc( 20px - 24px ) ;
+}
+
+.clear-user-icon:hover {
+  cursor: pointer;
+}
+
+.player-data {
+  width: 100%;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.player-name {
+  text-transform: capitalize;
+  width: calc( 100% - ( 25px + 20px) );
+}
+.player-prop {
+
+  
+  line-height: 50px;
+}
+
+#generation {
+  text-align: center;
+}
+#load {
+  text-align: center;
+}
+#teams {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 80%;
+  max-width: 700px;
+  margin: auto;
+  margin-top: 70px;
+  border-radius: 5px;
+}
+#teams p {
+  padding: 0;
+}
+#teams span {
+  text-transform: capitalize;
+}
+#teams:empty {
+  display: none;
+}
+
+#load-btn {
+  display: none;
+}
+#load-label {
+  margin: 10px;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+}
+#save-btn {
+  margin: 10px;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+}
+#save-btn.disabled {
+  background-color: rgb(172, 172, 172);
+}

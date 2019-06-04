@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="./lib/material-components-web.min.css" rel="stylesheet">
+  <script src="./lib/material-components-web.min.js"></script>
+
+  <script src="./lib/uuid_v1@latest.js"></script>
+
+  <link rel="stylesheet" href="./lib/materialicons.css">
+  <link href="index.css" rel="stylesheet" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balanced Teams</title>
+  <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
+  <link rel="manifest" href="./manifest.json">
+</head>
+
+<body>
+  <header class=" mdc-top-app-bar">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <span class="mdc-top-app-bar__title">Team Generator</span>
+      </section>
+    </div>
+  </header>
+
+  <main class="mdc-top-app-bar--fixed-adjust">
+
+    <div id="newplayer" class="mdc-elevation--z6">
+      <h4 class="mdc-typography--headline4">New Player</h4>
+      <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+        <input class="mdc-text-field__input " type="text" id="name">
+        <label for="name" class="mdc-floating-label">Name</label>
+        <div class="mdc-line-ripple"></div>
+      </div>
+      <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+        <input class="mdc-text-field__input " min="0" type="number" id="age">
+        <label for="age" class="mdc-floating-label">Age</label>
+        <div class="mdc-line-ripple"></div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="mdc-form-field">
+        <div class="mdc-radio">
+          <input class="mdc-radio__native-control" type="radio" id="radio-M" name="radios" checked>
+          <div class="mdc-radio__background">
+            <div class="mdc-radio__outer-circle"></div>
+            <div class="mdc-radio__inner-circle"></div>
+          </div>
+        </div>
+        <label for="radio-M">M</label>
+
+        <div class="mdc-radio">
+          <input class="mdc-radio__native-control" type="radio" id="radio-F" name="radios">
+          <div class="mdc-radio__background">
+            <div class="mdc-radio__outer-circle"></div>
+            <div class="mdc-radio__inner-circle"></div>
+          </div>
+        </div>
+        <label for="radio-F">F</label>
+
+
+      </div>
+      <br>
+      <br>
+      <br>
+
+      <label for="strength" class="mdc-typography--body2">Strength</label>
+      <br>
+      <div class="mdc-slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
+        aria-label="Select Value" id="strength">
+
+        <div class="mdc-slider__track-container">
+          <div class="mdc-slider__track"></div>
+        </div>
+        <div class="mdc-slider__thumb-container">
+          <svg class="mdc-slider__thumb" width="21" height="21">
+            <circle cx="10.5" cy="10.5" r="7.875"></circle>
+          </svg>
+          <div class="mdc-slider__focus-ring"></div>
+        </div>
+      </div>
+      <br>
+      <div class="mdc-form-field">
+        <div class="mdc-checkbox">
+          <input type="checkbox" class="mdc-checkbox__native-control" id="tm-checkbox" />
+          <div class="mdc-checkbox__background">
+            <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+              <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+            </svg>
+            <div class="mdc-checkbox__mixedmark"></div>
+          </div>
+        </div>
+        <label for="tm-checkbox">Trouble Maker</label>
+      </div>
+      <br>
+      <br>
+      <br>
+
+
+      <button class="mdc-button mdc-button--raised" id="add-player">Add Player</button>
+
+    </div>
+    <br>
+    <br>
+    
+    <div id="load">
+        <label for="load-btn"  class="custom-file-upload">
+            <span id="load-label" class="mdc-button mdc-button--raised"> Load list of Players </span>
+        </label>
+        <input type="file" accept="application/json" id="load-btn" ></button>
+        <button class="mdc-button mdc-button--raised" id="save-btn">Save list of Players</button>
+    </div>
+
+    <div id="players" class="mdc-elevation--z5"></div>
+    </div>
+    </div>
+
+    <br>
+    <br>
+    <div id="generation">
+      <span class="mdc-typography--headline5">Create Teams</span>
+      <br>
+      <br>
+      <br>
+      <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+        <input class="mdc-text-field__input " min="1" type="number" id="n-teams">
+        <label for="n-teams" class="mdc-floating-label">Number of Teams</label>
+        <div class="mdc-line-ripple"></div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <button class="mdc-button mdc-button--raised" id="generates">Generates!</button>
+
+      <div id="teams" class="mdc-typography mdc-elevation--z6"></div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+
+    </div>
+    <div class="mdc-snackbar">
+        <div class="mdc-snackbar__surface">
+          <div class="mdc-snackbar__label"
+               role="status"
+               aria-live="polite" id="alert">
+            Can't send photo. Retry in 5 seconds.
+          </div>
+        </div>
+      </div>
+  </main>
+
+  <template id="player-template">
+    <div class="player mdc-elevation--z3">
+      <div class="player-data">
+        <i class="material-icons  mdc-icon-button clear-user-icon">clear</i>
+        <div class="player-name mdc-typography--body1"> Domenico Popolizio Popolizio</div>
+
+      </div>
+      <div class="player-prop">
+        <div class="mdc-chip">
+          <i class="material-icons mdc-chip__icon mdc-chip__icon--leading">wc</i>
+          <div class="mdc-chip__text player-gen">M</div>
+        </div>
+        <div class="mdc-chip">
+          <i class="material-icons mdc-chip__icon mdc-chip__icon--leading">tag_faces</i>
+          <div class="mdc-chip__text player-age">15</div>
+        </div>
+        <div class="mdc-chip">
+          <i class="material-icons mdc-chip__icon mdc-chip__icon--leading">fitness_center</i>
+          <div class="mdc-chip__text player-strength">50%</div>
+        </div>
+        <div class="mdc-chip player-tm">
+          <i class="material-icons mdc-chip__icon">whatshot</i>
+        </div>
+      </div>
+  </template>
+  <!-- at the bottom of the page -->
+  <script src="index.js"></script>
+</body>
+
+</html>

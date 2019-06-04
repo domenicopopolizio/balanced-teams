@@ -1,0 +1,13 @@
+{
+  "name": "balanced-teams",
+  "version": "1.0.0",
+  "description": "Software to generate teams",
+  "main": "index.js",
+  "author": "Domenico Popolizio",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^5.0.2"
+  }
+}
